@@ -22,6 +22,7 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'pry-rails'
+  gem 'rspec-rails', '~> 4.1.0'
 end
 
 group :development do
