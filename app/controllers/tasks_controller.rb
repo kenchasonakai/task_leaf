@@ -2,7 +2,7 @@ class TasksController < ApplicationController
   skip_before_action :require_login, only: %w[index show]
 
   def index
-    @tasks = Task.all
+    @tasks = Task.all.includes(:user)
   end
 
   def new
