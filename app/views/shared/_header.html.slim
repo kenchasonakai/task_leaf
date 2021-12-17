@@ -12,5 +12,4 @@
           li.dropdown-item
             = link_to 'ログアウト', logout_path, method: :delete
     - else
-      .navbar-item
-        = link_to 'ログイン', login_path
+      = link_to 'ログイン', login_path, class: 'nav-link text-light'
