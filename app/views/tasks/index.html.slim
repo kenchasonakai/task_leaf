@@ -7,12 +7,14 @@ table.table.table-hover
   thead.thead-default
     tr
       th 名称
+      th 作成ユーザー名
       th 登録日時
       th
   tbody
     - @tasks.each do |task|
       tr
         td= link_to task.name, task
+        td= link_to task.user.name, task.user
         td= task.created_at
         - if task.user == current_user
           td
