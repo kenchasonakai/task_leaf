@@ -8,10 +8,10 @@ html
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   body
-    .app-title.navbar.navbar-expand-md.navbar-light.bg-light
-      .navbar-brand
-        = link_to 'TaskLeaf', root_path
+    = render 'shared/header'
     .container
-      - if flash.notice.present?
-        .alert.alert-success = flash.notice
+      - if flash.present?
+        - flash.each do |key, value|
+          p class="alert alert-#{key}"
+            |#{value}
       = yield
