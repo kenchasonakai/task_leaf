@@ -1,2 +1,10 @@
-h1 Users#show
-p Find me in app/views/users/show.html.slim
+h1 登録情報
+table.table.table-hover
+  tbody
+    tr
+      th お名前 
+      td= @user.name
+    tr
+      th メールアドレス 
+      td= @user.email
+= link_to '編集', edit_user_path(@user), class: 'btn btn-primary mr-3'
