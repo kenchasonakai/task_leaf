@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  skip_before_action :require_login, only: %w[new create]
+  skip_before_action :require_login
 
   def new
     @user = User.new
@@ -24,19 +24,19 @@ class UsersController < ApplicationController
     @user = User.find(current_user.id)
   end
 
-  def update
-    @user = User.find(current_user.id)
-    if @user.update(user_params)
-      redirect_to @user, success: 'ユーザー情報を更新しました'
-    else
-      flash.now[:danger] = 'ユーザー情報の更新に失敗しました'
-      render :edit
-    end
+def update
+  @user = User.find(current_user.id)
+  if @user.update(user_params)
+    redirect_to @user, success: 'ユーザー情報を更新しました'
+  else
+    flash.now[:danger] = 'ユーザー情報の更新に失敗しました'
+    render :edit
   end
+end
 
-  private
+private
 
-  def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
-  end
+def user_params
+  params.require(:user).permit(:name, :email, :password, :password_confirmation)
+end
 end

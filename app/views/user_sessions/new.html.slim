@@ -5,7 +5,7 @@ h1 ログインページ
     = f.email_field :email, class: 'form-control'
   .form-group.mb-2
     = f.label :password, User.human_attribute_name("password")
-    = f.password_field :password, class: 'form-control'
+    = f.text_field :password, class: 'form-control'
   = f.submit class: 'btn btn-primary'
 
 h2.mt-3.h5 アカウントをお持ちでない場合
