@@ -10,6 +10,7 @@ class UsersController < ApplicationController
       auto_login(@user)
       redirect_to root_path, success: 'TaskLeafへようこそ'
     else
+      flash.now[:danger] = 'ユーザー登録に失敗しました'
       render :new
     end
   end
@@ -30,6 +31,7 @@ class UsersController < ApplicationController
     if @user.update(user_params)
       redirect_to @user, success: 'ユーザー情報を更新しました'
     else
+      flash.now[:danger] = 'ユーザー情報の更新に失敗しました'
       render :edit
     end
   end

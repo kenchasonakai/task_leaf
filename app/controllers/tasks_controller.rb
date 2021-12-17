@@ -14,6 +14,7 @@ class TasksController < ApplicationController
     if @task.save
       redirect_to tasks_url, success: "タスク[#{@task.name}]を登録しました"
     else
+      flash.now[:danger] = 'タスクの作成に失敗しました'
       render :new
     end
   end
@@ -31,6 +32,7 @@ class TasksController < ApplicationController
     if @task.update(task_params)
       redirect_to tasks_url, success: "タスク[#{@task.name}]を更新しました"
     else
+      flash.now[:danger] = 'タスクの更新に失敗しました'
       render :edit
     end
   end
