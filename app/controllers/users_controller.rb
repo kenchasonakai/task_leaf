@@ -21,14 +21,11 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
-    raise ActionController::RoutingError, 'Not Found' if @user != current_user
+    @user = User.find(current_user.id)
   end
 
   def update
-    @user = User.find(params[:id])
-    raise ActionController::RoutingError, 'Not Found' if @user != current_user
-
+    @user = User.find(current_user.id)
     if @user.update(user_params)
       redirect_to @user, success: 'ユーザー情報を更新しました'
     else
