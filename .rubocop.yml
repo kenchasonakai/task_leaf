@@ -1,0 +1,79 @@
+inherit_from: .rubocop_todo.yml
+
+require:
+  - rubocop-rails
+# This file overrides https://github.com/bbatsov/rubocop/blob/master/config/default.yml
+AllCops:
+  DisplayStyleGuide: true
+  StyleGuideBaseURL: https://github.com/fortissimo1997/ruby-style-guide/blob/japanese/README.ja.md
+  Exclude:
+    - 'vendor/**/*'
+    - 'db/**/*'
+    - 'bin/**/*'
+    - 'spec/**/*'
+    - 'node_modules/**/*'
+    - 'app/models/concerns/aws_rekognition.rb'
+    - 'app/models/concerns/aws_transcribe.rb'
+    - 'tmp/**/*'
+    - 'lib/tasks/oneshot/**/*'
+    - 'config/**/*'
+    - 'test/**/*'
+    - 'Gemfile'
+  DisplayCopNames: true
+Layout/MultilineBlockLayout:
+  Exclude:
+    - 'spec/**/*_spec.rb'
+Metrics/AbcSize:
+  # TODO
+#  Max: 25
+  Enabled: false
+Metrics/BlockLength:
+  Max: 30
+  Exclude:
+    - 'Gemfile'
+    - 'config/**/*'
+    - 'lib/tasks/*'
+Metrics/ClassLength:
+  CountComments: false
+  Max: 300
+Metrics/CyclomaticComplexity:
+  Max: 30
+Layout/LineLength:
+  Enabled: false
+Metrics/MethodLength:
+  CountComments: false
+  Max: 30
+Naming/AccessorMethodName:
+  Enabled: false
+Style/AsciiComments:
+  Enabled: false
+Style/BlockDelimiters:
+  Exclude:
+    - 'spec/**/*_spec.rb'
+Style/ClassAndModuleChildren:
+  Enabled: false
+Style/Documentation:
+  Enabled: false
+Style/FrozenStringLiteralComment:
+  Enabled: false
+Style/IfUnlessModifier:
+  Enabled: false
+Style/WhileUntilModifier:
+  Enabled: false
+Bundler/OrderedGems:
+  Enabled: false
+Style/DoubleNegation:
+  Enabled: false
+# 平たくしてしまうと条件のグルーピングが脳内モデルとズレやすい
+Style/IfInsideElse:
+  Enabled: false
+Style/GuardClause:
+  Enabled: false
+Naming/PredicateName:
+  Enabled: false
+Rails/UnknownEnv:
+  Environments:
+    - production
+    - development
+    - test
+    - staging
