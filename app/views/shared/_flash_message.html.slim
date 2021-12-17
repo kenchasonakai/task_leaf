@@ -1,0 +1,4 @@
+- if flash.present?
+  - flash.each do |key, value|
+    p class="alert alert-#{key}"
+      |#{value}

@@ -10,8 +10,5 @@ html
   body
     = render 'shared/header'
     .container
-      - if flash.present?
-        - flash.each do |key, value|
-          p class="alert alert-#{key}"
-            |#{value}
+      = render 'shared/flash_message'
       = yield
