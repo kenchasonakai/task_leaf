@@ -1,0 +1,15 @@
+.app-title.navbar.navbar-expand-md.navbar-dark.bg-dark
+  .navabar-nav.me-auto.ms-3
+    = link_to 'TaskLeaf', root_path, class: 'navbar-brand'
+  .navabar-nav.me-3
+    /TODO: ユーザーのアイコンに変える
+    - if current_user
+      .nav-item.dropdown
+        = link_to (image_tag 'lgtm_icon', size: '70x70', class: 'rounded-circle'), '#', class: 'nav-link dropdown-toggle',id: "navbarScrollingDropdown", role: "button", 'data-bs-toggle': :dropdown, 'aria-expanded': false
+        ul.dropdown-menu aria-labelledby="navbarScrollingDropdown"
+          li.dropdown-item
+            = link_to 'アカウント', user_path(current_user)
+          li.dropdown-item
+            = link_to 'ログアウト', logout_path, method: :delete
+    - else
+      = link_to 'ログイン', login_path, class: 'nav-link text-light'

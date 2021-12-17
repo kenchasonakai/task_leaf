@@ -1,16 +1,22 @@
 class TasksController < ApplicationController
+  skip_before_action :require_login, only: %w[index show]
+
   def index
-    @tasks = Task.all
+    @tasks = Task.all.includes(:user)
   end
 
   def new
-    @task = Task.new
+    @task = current_user.tasks.build
   end
 
   def create
-    task = Task.new(task_params)
-    task.save!
-    redirect_to tasks_url, notice: "タスク[#{task.name}]を登録しました"
+    @task = current_user.tasks.build(task_params)
+    if @task.save
+      redirect_to tasks_url, success: "タスク[#{@task.name}]を登録しました"
+    else
+      flash.now[:danger] = 'タスクの作成に失敗しました'
+      render :new
+    end
   end
 
   def show
@@ -18,19 +24,23 @@ class TasksController < ApplicationController
   end
 
   def edit
-    @task = Task.find(params[:id])
+    @task = current_user.tasks.find(params[:id])
   end
 
   def update
-    task = Task.find(params[:id])
-    task.update!(task_params)
-    redirect_to tasks_url, notice: "タスク[#{task.name}]を更新しました"
+    @task = current_user.tasks.find(params[:id])
+    if @task.update(task_params)
+      redirect_to tasks_url, success: "タスク[#{@task.name}]を更新しました"
+    else
+      flash.now[:danger] = 'タスクの更新に失敗しました'
+      render :edit
+    end
   end
 
   def destroy
-    task = Task.find(params[:id])
+    task = current_user.tasks.find(params[:id])
     task.destroy!
-    redirect_to tasks_url, notice: "タスク[#{task.name}]を削除しました"
+    redirect_to tasks_url, success: "タスク[#{task.name}]を削除しました"
   end
 
   private
