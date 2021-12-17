@@ -1,8 +1,5 @@
-- if task.errors.present?
-  ul#error_explanation
-    - task.errors.full_messages.each do |message|
-      li= message
 = form_with model: task, local: true do |f|
+  = render 'shared/error_field', object: f.object
   .form-group
     = f.label :name
     = f.text_field :name, class: 'form-control', id: 'task_name'
