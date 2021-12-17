@@ -2,10 +2,10 @@ h1 ログインページ
 = form_with url: login_path, local: true do |f|
   .form-group.mb-2
     = f.label :email, User.human_attribute_name("email")
-    = f.text_field :email, class: 'form-control'
+    = f.email_field :email, class: 'form-control'
   .form-group.mb-2
     = f.label :password, User.human_attribute_name("password")
-    = f.text_field :password, class: 'form-control'
+    = f.password_field :password, class: 'form-control'
   = f.submit class: 'btn btn-primary'
 
 h2.mt-3.h5 アカウントをお持ちでない場合
