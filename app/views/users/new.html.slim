@@ -1,2 +1,5 @@
-h1 Users#new
-p Find me in app/views/users/new.html.slim
+h1 ユーザー登録
+= render partial: 'form', locals: { user: @user }
+h2.mt-3.h5 アカウントをお持ちの場合
+p
+  = link_to 'ログイン', 'new_user_session_path'
