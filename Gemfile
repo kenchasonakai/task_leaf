@@ -16,6 +16,7 @@ gem 'slim-rails'
 gem 'html2slim'
 gem 'bootstrap'
 gem 'sorcery'
+gem 'jquery-rails'
 
 group :development, :test do
   gem 'pry-byebug'
