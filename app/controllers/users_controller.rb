@@ -7,8 +7,8 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      auto_login(user)
-      redirect_to root_path, notice: 'TaskLeafへようこそ'
+      auto_login(@user)
+      redirect_to root_path, success: 'TaskLeafへようこそ'
     else
       render :new
     end
@@ -25,7 +25,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-      redirect_to @user, notice: 'ユーザー情報を更新しました'
+      redirect_to @user, success: 'ユーザー情報を更新しました'
     else
       render :edit
     end
